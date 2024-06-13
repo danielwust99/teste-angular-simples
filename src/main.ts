@@ -1,28 +1,25 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { Component, EventEmitter, OnInit } from '@angular/core';
-
-import 'zone.js';
 import { CommonModule } from '@angular/common';
+import 'zone.js';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
+  selector: 'app-root',
   imports: [CommonModule],
   template: `
-    <h1>Count {{teste | async}}!</h1>
+    <h1>Count {{value | async}}!</h1>
   `,
 })
 export class App implements OnInit {
-  name = 'Angular';
-
-  teste = new EventEmitter<any>();
+  value = new EventEmitter<any>();
 
   ngOnInit(): void {
     this.updateValue(1);
   }
 
   updateValue(value: number) {
-    this.teste.emit(value + 1);
+    this.value.emit(value + 1);
     setTimeout(() => this.updateValue(value + 1), 1000);
   }
 }
